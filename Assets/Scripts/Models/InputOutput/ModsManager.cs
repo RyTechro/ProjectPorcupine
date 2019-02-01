@@ -114,7 +114,7 @@ public class ModsManager
     private void LoadIntroFiles()
     {
         LoadDirectoryAssets("MainMenu/Images", SpriteManager.LoadSpriteFiles);
-        LoadDirectoryAssets("MainMenu/Audio", AudioManager.LoadAudioFiles);
+        LoadDirectoryAssets("Audio", AudioManager.LoadAudioFiles);
     }
 
     private void LoadSharedFiles()
@@ -188,12 +188,10 @@ public class ModsManager
 
     private void LoadPrototypes()
     {
-        // Get list of files in Prototype directory
         string prototypesDirectoryPath = Path.Combine(Path.Combine(Application.streamingAssetsPath, "Data"), "Prototypes");
-
         DirectoryInfo prototypeDir = new DirectoryInfo(prototypesDirectoryPath);
-
         FileInfo[] prototypeFiles = prototypeDir.GetFiles("*.json").ToArray();
+        Dictionary<string, JToken> tagNameToProperty = new Dictionary<string, JToken>();
 
         for (int i = 0; i < prototypeFiles.Length; i++)
         {
@@ -202,19 +200,16 @@ public class ModsManager
             JToken protoJson = JToken.ReadFrom(new JsonTextReader(reader));
             string tagName = ((JProperty)protoJson.First).Name;
 
-            // This *should* handle tags spread across multiple files, multiple tags in a single file, and multiple handlers per type.
-            foreach (JToken prototypeGroup in protoJson)
+            tagNameToProperty.Add(tagName, protoJson);
+        }
+
+        foreach (KeyValuePair<string, List<Action<JProperty>>> prototypeHandler in prototypeHandlers)
+        {
+            foreach (Action<JProperty> handler in prototypeHandler.Value)
             {
-                if (prototypeHandlers.ContainsKey(tagName))
+                foreach (JToken prototypeGroup in tagNameToProperty[prototypeHandler.Key])
                 {
-                    foreach (Action<JProperty> handler in prototypeHandlers[tagName])
-                    {
-                        handler((JProperty)prototypeGroup);
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("No handler for key " + tagName);
+                    handler((JProperty)prototypeGroup);
                 }
             }
         }

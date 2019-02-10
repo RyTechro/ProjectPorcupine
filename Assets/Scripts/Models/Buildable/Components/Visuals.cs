@@ -82,6 +82,10 @@ namespace ProjectPorcupine.Buildable.Components
                             ParentFurniture.Animations.SetFrameIndex(frmIdx);
                         }
                     }
+                    else if (anim.RunConditions == null)
+                    {
+                        UnityDebugger.Debugger.LogWarning("Bug126", "anim.RunConditions == null;" + anim.Name);                        
+                    }
                     else if (anim.RunConditions.ParamConditions != null)
                     {
                         if (AreParameterConditionsFulfilled(anim.RunConditions.ParamConditions))

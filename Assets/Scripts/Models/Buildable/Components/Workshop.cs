@@ -106,7 +106,10 @@ namespace ProjectPorcupine.Buildable.Components
 
         [XmlElement("ProductionChain")]
         [JsonProperty("ProductionChain")]
-        public List<ProductionChain> PossibleProductions { get; set; }
+        public List<ProductionChain> PossibleProductions
+        { 
+            get;
+            set;}
 
         [XmlElement("RunConditions")]
         [JsonProperty("RunConditions")]
@@ -274,7 +277,7 @@ namespace ProjectPorcupine.Buildable.Components
                         List<TileObjectTypeAmount> outPlacement = CheckForInventoryAtOutput(prodChain);
 
                         // if output placement was found for all products, place them
-                        if (outPlacement.Count == prodChain.Output.Count)
+                        if ( outPlacement.Count == prodChain.Output.Count)
                         {
                             PlaceInventories(outPlacement);
                             //// processing done, can fetch input for another processing

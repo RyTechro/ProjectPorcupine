@@ -2728,6 +2728,48 @@
       "Y": 2,
       "Z": 0,
       "Type": "power_cable"
+    },
+    {
+      "X": 9,
+      "Y": 6,
+      "Z": 0,
+      "Type": "power_cable"
+    },
+    {
+      "X": 8,
+      "Y": 6,
+      "Z": 0,
+      "Type": "power_cable"
+    },
+    {
+      "X": 7,
+      "Y": 6,
+      "Z": 0,
+      "Type": "power_cable"
+    },
+    {
+      "X": 6,
+      "Y": 6,
+      "Z": 0,
+      "Type": "power_cable"
+    },
+    {
+      "X": 5,
+      "Y": 6,
+      "Z": 0,
+      "Type": "power_cable"
+    },
+    {
+      "X": 4,
+      "Y": 6,
+      "Z": 0,
+      "Type": "power_cable"
+    },
+    {
+      "X": 3,
+      "Y": 6,
+      "Z": 0,
+      "Type": "power_cable"
     }
   ],
   "RoomBehaviors": []

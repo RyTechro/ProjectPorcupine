@@ -272,7 +272,8 @@ public class WorldController : MonoBehaviour
 
     private void CreateEmptyWorld()
     {
-        World = SceneController.CreateNewWorld();
+//        World = SceneController.CreateNewWorld();
+        World = SceneController.CreateNewWorld("testworld.xml");
 
         // Center the Camera
         Camera.main.transform.position = new Vector3(World.Width / 2, World.Height / 2, Camera.main.transform.position.z);

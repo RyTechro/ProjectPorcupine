@@ -576,7 +576,7 @@ public class OverlayMap : MonoBehaviour
         colorMapView = new GameObject();
         colorMapView.AddComponent<UnityEngine.UI.Image>();
         colorMapView.transform.SetParent(parentPanel.transform);
-        colorMapView.AddComponent<UnityEngine.UI.Text>();
+        //colorMapView.AddComponent<UnityEngine.UI.Text>();
         colorMapView.AddComponent<UnityEngine.UI.LayoutElement>();
         colorMapView.GetComponent<UnityEngine.UI.LayoutElement>().minHeight = 30;
         colorMapView.GetComponent<UnityEngine.UI.LayoutElement>().minWidth = 150;
